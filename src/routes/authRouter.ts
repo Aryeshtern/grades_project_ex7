@@ -1,6 +1,8 @@
 import { Router } from "express";
-
 import { login } from "../controllers/authController";
+import { errorHendler } from "../middelware/errorMiddleware";
+import { addTecher } from '../controllers/TeacherController'
+import { addStudent} from '../controllers/studentController';
 
 const router = Router();
 
@@ -52,5 +54,57 @@ const router = Router();
  */
 
 router.post("/login", login);
+
+/**
+ * @swagger
+ * /auth/teachers:
+ *   post:
+ *     tags: [Teacher]
+ *     summary: Create a new teacher
+ *     description: Adds a new teacher to the system.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CreateUser'
+ *     responses:
+ *       201:
+ *         description: teacher created successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Teacher'
+ *       400:
+ *         description: Bad request, invalid input.
+*/
+router.post('/teachers', errorHendler(addTecher));
+
+/**
+ * @swagger
+ * /auth/students:
+ *   post:
+ *     tags: [Students]
+ *     summary: Create a new student
+ *     description: Adds a new student to the system.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CreateUser'
+ *     responses:
+ *       201:
+ *         description: Student created successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Student'
+ *       400:
+ *         description: Bad request, invalid input.
+*/
+
+router.post('/students', errorHendler(addStudent));
+
 
 export default router;

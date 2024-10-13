@@ -1,6 +1,6 @@
 import UserDetailes from "../dto/userDetailes";
 import * as classServces from "../services/classServices";
-import User, { Student } from "../models/User";
+import User, { IGrade, Student } from "../models/User";
 import Class from "../models/Class";
 
 export const addstudentDB = async (
@@ -18,8 +18,13 @@ export const addstudentDB = async (
     class: requestedClass._id,
   });
 
-  requestedClass.students.push(newStudent._id);
+  requestedClass.updateOne({
+    $push: { students: newStudent._id },
+  })
 
   await requestedClass.save();
   await newStudent.save();
+  return newStudent;
 };
+
+

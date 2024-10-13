@@ -10,6 +10,6 @@ export const addStudent = async (req: Request, res: Response): Promise<void> => 
         email,
         password,
     };
-    await studentServices.addstudentDB(newStudent, classNmae);
-    res.status(201).send(newStudent);
+    const addedStudent = await studentServices.addstudentDB(newStudent, classNmae);
+    res.status(201).send(addedStudent);
 }

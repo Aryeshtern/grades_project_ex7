@@ -23,7 +23,7 @@ app.use(cookieParser());
 // Connect to MongoDB
 connectDB();
 
-app.use("/teachers", teacherRouter);
+// app.use("/teachers", teacherRouter);
 app.use("/students", studentRouter);
 app.use("/auth", authRouter); 
 
