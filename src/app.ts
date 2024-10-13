@@ -1,8 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
-// import postRouter from "./routes/postRoutes";
+import studentRouter from "./routes/studentRouter";
 import teacherRouter from "./routes/teacherRouter";
-// import AuthRouter from "./routes/authRouter";
+import authRouter from "./routes/authRouter";
 import connectDB from "./services/db";
 import swaggerJsdoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
@@ -23,7 +23,9 @@ app.use(cookieParser());
 // Connect to MongoDB
 connectDB();
 
-app.use("/api/teachers", teacherRouter)
+app.use("/teachers", teacherRouter);
+app.use("/students", studentRouter);
+app.use("/auth", authRouter); 
 
 
 

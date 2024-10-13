@@ -16,6 +16,7 @@ export interface IUser extends Document {
     username: string;
     email: string;
     password: string;
+    rank: "student" | "teacher";
     class?: Types.ObjectId;
     comparePassword(userPassword: string): Promise<boolean>;
 }
@@ -55,6 +56,11 @@ const userSchema = new Schema<IUser>({
         required: [true, "Password is required."],
         minlength: [8, "Password must be at least 8 characters long."],
         select: false
+    },
+    rank: {
+        type: String,
+        required: true,
+        enum: ["student", "teacher"]
     }
 }, options);
 

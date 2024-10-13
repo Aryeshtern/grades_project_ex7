@@ -1,16 +1,16 @@
-import { Router} from 'express'
-import { addTecher } from '../controllers/TeacherController'
+import { Router } from 'express';
+import { addStudent} from '../controllers/studentController';
 import { errorHendler} from '../middelware/errorMiddleware'
 
-const router = Router()
+const router = Router();
 
 /**
  * @swagger
- * /teachers:
+ * /students:
  *   post:
- *     tags: [Teacher]
- *     summary: Create a new teacher
- *     description: Adds a new teacher to the system.
+ *     tags: [Students]
+ *     summary: Create a new student
+ *     description: Adds a new student to the system.
  *     requestBody:
  *       required: true
  *       content:
@@ -19,14 +19,15 @@ const router = Router()
  *             $ref: '#/components/schemas/CreateUser'
  *     responses:
  *       201:
- *         description: teacher created successfully.
+ *         description: Student created successfully.
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Teacher'
+ *               $ref: '#/components/schemas/Student'
  *       400:
  *         description: Bad request, invalid input.
 */
-router.post('/', errorHendler(addTecher));
+
+router.post('/', errorHendler(addStudent));
 
 export default router;

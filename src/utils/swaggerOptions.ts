@@ -1,4 +1,3 @@
-import IClass from '../models/Class'
 import { Schema } from "mongoose";
 const options = {
   definition: {
@@ -23,7 +22,7 @@ const options = {
             }
           },
         },
-        CreateTeacher: {
+        CreateUser: {
           type: "object",
           properties: {
             username: {
@@ -47,9 +46,38 @@ const options = {
             },
           },
         },
+        Student: {
+            type: "object",
+            properties: {
+              username: {
+                type: "string",
+                required: true,
+              },
+              email: {
+                type: "string",
+                format: "email",
+                required: true,
+              },
+              class: {
+                type: Schema.Types.ObjectId,
+                ref: "Class",
+              },
+              grades:{
+                type: "array",
+                items: {
+                  type: "object",
+                  properties: {
+                    exsmname: { type: "string" },
+                    grade: { type: "number" },
+                    comment: {type: "string"}
+                  },
+                },
+              }
+            },
+          },
+        }
       },
     },
-  },
   servers: [
     {
       url: "http://localhost:3000",

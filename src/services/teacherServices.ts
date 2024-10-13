@@ -1,4 +1,4 @@
-import {Teacher, IUser} from "../models/User";
+import {Teacher} from "../models/User";
 import Class from "../models/Class";
 import UserDetailes from "../dto/userDetailes";
 
